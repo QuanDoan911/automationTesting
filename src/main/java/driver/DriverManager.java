@@ -7,17 +7,48 @@ import java.util.List;
 
 public abstract class DriverManager {
 
-    public WebDriver driver;
+    private static final ThreadLocal<WebDriver> DRIVERS = new ThreadLocal<>();
+
     public abstract void createWebDriver();
-    public void quitWebDriver() {
-        if (driver != null){
-            driver.quit();
-            driver = null;
-        }
+
+    public static WebDriver getWebDriver() {
+        return DRIVERS.get();
     }
-    public WebDriver getWebDriver() {
-        if (driver == null)
+
+    public void setWebDriver() {
+        if (null == driver) {
             createWebDriver();
-        return driver;
+        }
+        DRIVERS.set(driver);
     }
+
+    public String getRemoteUrl() {
+        return remoteUrl;
+    }
+
+    public void setRemoteUrl(String remoteUrl) {
+        this.remoteUrl = remoteUrl;
+    }
+
+    public List<String> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(List<String> arguments) {
+        this.arguments = arguments;
+    }
+
+    public DesiredCapabilities getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(DesiredCapabilities capabilities) {
+        this.capabilities = capabilities;
+    }
+
+    protected WebDriver driver;
+    private String remoteUrl;
+    private List<String> arguments;
+    private DesiredCapabilities capabilities;
 }
+
