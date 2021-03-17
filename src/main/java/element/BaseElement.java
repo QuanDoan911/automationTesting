@@ -1,13 +1,12 @@
 package element;
 
-import constants.Constants;
+import globalvariables.GlobalVariables;
 import driver.DriverUtilities;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.lang.model.element.Element;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -127,7 +126,7 @@ public class BaseElement {
     }
 
     public void scrollToElement() {
-        waitForVisible(Constants.SHORT_TIMEOUT);
+        waitForVisible(GlobalVariables.SHORT_TIMEOUT);
         ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView();", findElement());
     }
 }

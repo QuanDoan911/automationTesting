@@ -3,12 +3,12 @@ package utilities;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class ConfigFileReader{
+public class PropertiesHelper {
 
     private Properties prop = null;
 
     //Constructor for ConfigFileReader class
-    public ConfigFileReader(String path){
+    public PropertiesHelper(String path){
         try {
             FileInputStream fis = new FileInputStream(path);
             prop = new Properties();
