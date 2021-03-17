@@ -8,7 +8,7 @@ public class GlobalVariables {
     //Project path
     public static final String PROJECT_PATH = System.getProperty("user.dir")+"/src";
     public static final String MAIN_RESOURCES_PATH = PROJECT_PATH + "/main/resources";
-    public static final String TEST_RESOURCES_PATH = PROJECT_PATH + "/src/test/resources";
+    public static final String TEST_RESOURCES_PATH = PROJECT_PATH + "/test/resources";
 
 
     //Test data and configuration
