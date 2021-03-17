@@ -7,19 +7,19 @@ import java.util.List;
 
 public abstract class DriverManager {
 
-    private static final ThreadLocal<WebDriver> DRIVERS = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> webDrivers = new ThreadLocal<>();
 
     public abstract void createWebDriver();
 
     public static WebDriver getWebDriver() {
-        return DRIVERS.get();
+        return webDrivers.get();
     }
 
     public void setWebDriver() {
         if (null == driver) {
             createWebDriver();
         }
-        DRIVERS.set(driver);
+        webDrivers.set(driver);
     }
 
     public String getRemoteUrl() {
