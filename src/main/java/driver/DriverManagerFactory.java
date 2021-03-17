@@ -23,8 +23,8 @@ public class DriverManagerFactory {
         }
 
         driverManager.setRemoteUrl(property.getRemoteUrl());
-//        driverManager.setArguments(JsonHelper.convertJsonToList(property.getArguments()));
-//        driverManager.setCapabilities(JsonHelper.convertJsonToDesiredCapabilities(property.getCapabilities()));
+        driverManager.setArguments(JsonHelper.convertJsonToList(property.getArguments()));
+        driverManager.setCapabilities(JsonHelper.convertJsonToDesiredCapabilities(property.getCapabilities()));
 
         return driverManager;
     }

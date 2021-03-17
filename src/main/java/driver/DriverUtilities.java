@@ -1,6 +1,6 @@
 package driver;
 
-import constants.Constants;
+import globalvariables.GlobalVariables;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -52,7 +52,7 @@ public class DriverUtilities {
     }
 
     public static Alert switchToAlert() {
-        waitForAlert(Constants.SHORT_TIMEOUT);
+        waitForAlert(GlobalVariables.SHORT_TIMEOUT);
         return driver().switchTo().alert();
     }
 
@@ -80,6 +80,6 @@ public class DriverUtilities {
 
     public void refreshPage() {
         driver().navigate().refresh();
-        waitForPageLoad(Constants.MEDIUM_TIMEOUT);
+        waitForPageLoad(GlobalVariables.MEDIUM_TIMEOUT);
     }
 }
