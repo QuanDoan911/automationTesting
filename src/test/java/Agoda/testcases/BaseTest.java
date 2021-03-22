@@ -1,17 +1,16 @@
-package testcases;
+package Agoda.testcases;
 
 import driver.DriverManagerFactory;
 import driver.DriverProperty;
 import driver.DriverUtilities;
 import org.testng.annotations.*;
 import utilities.BrowserSettingHelper;
+import utilities.JsonHelper;
 import utilities.PropertiesHelper;
 
-import static globalvariables.GlobalVariables.*;
-
-import utilities.JsonHelper;
-
 import java.io.IOException;
+
+import static utilities.GlobalVariables.*;
 
 public class BaseTest {
 

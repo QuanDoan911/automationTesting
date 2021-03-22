@@ -1,4 +1,4 @@
-package common;
+package Vietjet.common;
 
 public class Common {
 }

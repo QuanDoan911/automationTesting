@@ -1,6 +1,6 @@
 package element;
 
-import globalvariables.GlobalVariables;
+import static utilities.GlobalVariables.*;
 import driver.DriverUtilities;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -126,7 +126,7 @@ public class BaseElement {
     }
 
     public void scrollToElement() {
-        waitForVisible(GlobalVariables.SHORT_TIMEOUT);
+        waitForVisible(SHORT_TIMEOUT);
         ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView();", findElement());
     }
 }
