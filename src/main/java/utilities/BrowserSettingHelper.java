@@ -1,7 +1,7 @@
 package utilities;
 
 import driver.DriverProperty;
-import globalvariables.GlobalVariables;
+import static utilities.GlobalVariables.*;
 import org.ini4j.Profile.Section;
 import org.ini4j.Wini;
 
@@ -26,7 +26,7 @@ public class BrowserSettingHelper {
 
 	public static DriverProperty getDriverProperty(String section) {
 		DriverProperty property = new DriverProperty();
-		Section data = getData(GlobalVariables.BROWSER_CONFIGURATION, section);
+		Section data = getData(BROWSER_CONFIGURATION, section);
 		String mode = data.get("mode");
 		String driver = data.get("driver");
 		String remoteUrl = data.get("remoteUrl");

@@ -1,4 +1,4 @@
-package pages;
+package Agoda.pages;
 
 public class BasePage {
 }
