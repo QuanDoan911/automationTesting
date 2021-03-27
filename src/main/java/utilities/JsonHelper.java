@@ -59,7 +59,6 @@ public class JsonHelper {
      * Put the data into object array and return to data provider
      */
     public static Object[][] getData(String testName, String dataFilePath) throws IOException {
-
         Object[][] data = new Object[0][1];
 
         //Read json file data using Gson library
@@ -81,7 +80,6 @@ public class JsonHelper {
     }
 
     public static Object[][] jsonArrayToObjectArray(JsonArray jsonArray){
-
         Object[][] data = new Object[0][1];
         int index = 0;
         Gson gson = new Gson();
