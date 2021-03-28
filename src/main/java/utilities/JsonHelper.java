@@ -1,30 +1,25 @@
 package utilities;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-
-import com.google.gson.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import com.google.gson.reflect.TypeToken;
+import java.util.*;
 
 public class JsonHelper {
 
     public static Map<String, String> convertJsonToMap(String json) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() {}.getType();
-        Map<String, String> myMap = gson.fromJson(json, type);
-        return myMap;
+        return gson.fromJson(json, type);
     }
 
     public static List<String> convertJsonToList(String json) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         Map<String, String> map = convertJsonToMap(json);
         if (null != map) {
             for (String key : map.keySet()) {

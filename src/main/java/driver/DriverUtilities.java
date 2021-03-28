@@ -1,6 +1,7 @@
 package driver;
 
-import static utilities.GlobalVariables.*;
+import driver.manage.DriverManagerFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +12,10 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverUtilities {
 
+    private static final Logger logger = Logger.getLogger(DriverUtilities.class);
+
     public static WebDriver driver() {
-        return DriverManager.getWebDriver();
+        return DriverManagerFactory.getDriver();
     }
 
     public static void closeBrowser() {
@@ -36,13 +39,14 @@ public class DriverUtilities {
         wait.until(ExpectedConditions.titleContains(title));
     }
 
-    public static void waitForPageLoad(int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver(), timeout);
+    public static void waitForAjax(int timeout) {
+        JavascriptExecutor executor = (JavascriptExecutor) driver();
         try {
-            wait.until(driver -> (boolean) ((JavascriptExecutor) driver()).executeScript("return jQuery.active == 0"));
-            wait.until(driver -> (boolean) ((JavascriptExecutor) driver()).executeScript("return document.readyState")
-                    .equals("complete"));
+            WebDriverWait wait = new WebDriverWait(driver(), timeout);
+            wait.until(driver -> (Boolean) executor.executeScript("return jQuery.active === 0"));
+            wait.until(driver -> (Boolean) executor.executeScript("return document.readyState === 'complete';"));
         } catch (Exception e) {
+            logger.error("waitForAjax: An error occurred when waitForAjax: " + e.getMessage());
         }
     }
 
@@ -52,7 +56,6 @@ public class DriverUtilities {
     }
 
     public static Alert switchToAlert() {
-        waitForAlert(SHORT_TIMEOUT);
         return driver().switchTo().alert();
     }
 
@@ -80,6 +83,5 @@ public class DriverUtilities {
 
     public void refreshPage() {
         driver().navigate().refresh();
-        waitForPageLoad(MEDIUM_TIMEOUT);
     }
 }

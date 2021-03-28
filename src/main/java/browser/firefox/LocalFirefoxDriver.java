@@ -1,11 +1,11 @@
 package browser.firefox;
 
-import driver.DriverManager;
+import driver.manage.LocalDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class LocalFirefoxDriver extends DriverManager {
+public class LocalFirefoxDriver extends LocalDriverManager {
     @Override
     public void createWebDriver() {
         WebDriverManager.firefoxdriver().setup();
