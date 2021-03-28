@@ -1,14 +1,11 @@
 package driver.manage;
 
 import driver.DriverProperty;
-import driver.manage.DriverManager;
-import org.apache.hc.core5.util.ReflectionUtils;
 import org.openqa.selenium.WebDriver;
-import utilities.JsonHelper;
 
 public class DriverManagerFactory {
 
-    protected static final ThreadLocal<DriverManager> webDrivers = new ThreadLocal<>();
+    private static final ThreadLocal<DriverManager> webDrivers = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         return webDrivers.get().getWebDriver();
