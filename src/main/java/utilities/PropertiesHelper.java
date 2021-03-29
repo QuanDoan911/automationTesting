@@ -8,10 +8,10 @@ import java.util.Properties;
 
 public class PropertiesHelper {
 
-    private static Properties _conf, _profile;
+    private static Properties conf, profile;
     private static final Logger logger = Logger.getLogger(DriverUtilities.class);
 
-    private static Properties _propsForName(String propFileName) {
+    private static Properties propsForName(String propFileName) {
         InputStream inputStream = null;
         try {
             logger.info("Loading properties : " + propFileName);
@@ -38,49 +38,49 @@ public class PropertiesHelper {
         return null;
     }
 
-    private static void _initProps() {
-        if (_conf == null) {
-            _conf = _propsForName("conf.properties");
+    private static void initProps() {
+        if (conf == null) {
+            conf = propsForName("config.properties");
         }
 
-        if (_profile == null) {
+        if (profile == null) {
             String profile = System.getProperty("profile");
             if (profile != null)
-                _profile = _propsForName("profiles/" + profile + ".properties");
+                PropertiesHelper.profile = propsForName("profiles/" + profile + ".properties");
             else
-                _profile = _propsForName("profiles/qa.properties");
+                PropertiesHelper.profile = propsForName("profiles/qa.properties");
         }
     }
 
-    public static String getPropValue(String key) {
+    public static String getStringValue(String key) {
         return getPropValue(key, null);
     }
 
-    public static int getInt(String key) {
+    public static int getIntValue(String key) {
         String value = getPropValue(key, null);
         return Integer.parseInt(value);
     }
 
-    public static double getDouble(String key) {
+    public static double getDoubleValue(String key) {
         String value = getPropValue(key, null);
         return Double.parseDouble(value);
     }
 
-    public static boolean getBoolean(String key) {
+    public static boolean getBooleanValue(String key) {
         String value = getPropValue(key, null);
         return Boolean.parseBoolean(value);
     }
 
     public static String getPropValue(String key, String defaultValue) {
-        _initProps();
+        initProps();
         if (System.getProperty(key) != null)
             return System.getProperty(key);
 
-        if (_profile != null && _profile.containsKey(key))
-            return _profile.getProperty(key);
+        if (profile != null && profile.containsKey(key))
+            return profile.getProperty(key);
 
-        if (_conf != null && _conf.containsKey(key))
-            return _conf.getProperty(key);
+        if (conf != null && conf.containsKey(key))
+            return conf.getProperty(key);
         return defaultValue;
     }
 }
