@@ -29,8 +29,6 @@ public class BaseControl {
                 return By.id(body);
             case "class":
                 return By.className(body);
-            case "xpath":
-                return By.xpath(body);
             case "name":
                 return By.name(body);
             default:

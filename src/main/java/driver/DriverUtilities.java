@@ -7,10 +7,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.PropertiesHelper;
 
 import java.util.concurrent.TimeUnit;
 
 public class DriverUtilities {
+
 
     private static final Logger logger = Logger.getLogger(DriverUtilities.class);
 
@@ -83,5 +85,11 @@ public class DriverUtilities {
 
     public void refreshPage() {
         driver().navigate().refresh();
+    }
+
+    public static void navigateToTestSite(String url){
+        driver().navigate().to(url);
+        maximizeBrowser();
+        waitForAjax(PropertiesHelper.getIntValue("Short_Timeout"));
     }
 }
