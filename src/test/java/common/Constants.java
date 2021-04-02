@@ -1,6 +1,7 @@
 package common;
 
 import java.io.File;
+
 import utilities.PropertiesHelper;
 
 public class Constants {
@@ -23,4 +24,7 @@ public class Constants {
     public static final String ENVIRONMENT = PropertiesHelper.getStringValue("Environment");
     public static final String BROWSER = PropertiesHelper.getStringValue("BrowserName");
     public static final String RUN_ON = PropertiesHelper.getStringValue("RunOn");
+
+    //
+    public static final String URL = PropertiesHelper.getStringValue("profile.vietjet.url");
 }

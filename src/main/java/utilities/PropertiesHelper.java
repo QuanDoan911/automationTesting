@@ -44,11 +44,7 @@ public class PropertiesHelper {
         }
 
         if (profile == null) {
-            String profile = System.getProperty("profile");
-            if (profile != null)
-                PropertiesHelper.profile = propsForName("profiles/" + profile + ".properties");
-            else
-                PropertiesHelper.profile = propsForName("profiles/qa.properties");
+            profile = propsForName("profiles/profile.properties");
         }
     }
 
