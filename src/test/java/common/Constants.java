@@ -1,6 +1,7 @@
 package common;
 
 import java.io.File;
+import java.util.Locale;
 
 import utilities.PropertiesHelper;
 
@@ -11,7 +12,7 @@ public class Constants {
     public static final String TEST_RESOURCES_PATH = PROJECT_PATH + File.separator + "test" + File.separator + "resources";
     //Test data and configuration
     public static final String TEST_DATA_JSON = PROJECT_PATH + File.separator + "test" + File.separator + "java";
-    public static final String TEST_CONFIGURATION = MAIN_RESOURCES_PATH + File.separator + "configuration.properties";
+    public static final String TEST_CONFIGURATION = MAIN_RESOURCES_PATH + File.separator + "config.properties";
     public static final String BROWSER_CONFIGURATION = TEST_RESOURCES_PATH + File.separator + "browser.setting.properties";
 
     //Wait time
@@ -22,8 +23,8 @@ public class Constants {
     //Run parameters
     public static final String TESTING_TYPE = PropertiesHelper.getStringValue("TestingType");
     public static final String ENVIRONMENT = PropertiesHelper.getStringValue("Environment");
-    public static final String BROWSER = PropertiesHelper.getStringValue("BrowserName");
-    public static final String RUN_ON = PropertiesHelper.getStringValue("RunOn");
+    public static final String BROWSER = PropertiesHelper.getStringValue("BrowserName").toLowerCase();
+    public static final String RUN_ON = PropertiesHelper.getStringValue("RunOn").toLowerCase();
 
     //
     public static final String URL = PropertiesHelper.getStringValue("profile.vietjet.url");

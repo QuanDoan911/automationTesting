@@ -1,8 +1,16 @@
 {
   "VJ01_SearchAndChooseTicketsOnASpecificDaySuccessfully": [
     {
-      "No.": "Data1",
-      "TestDataPurpose": "Search and choose tickets on a specific day successfully"
+      "no.": "Data1",
+      "testDataPurpose": "Search and choose tickets on a specific day successfully",
+      "isReturndata": "true",
+      "origin": "SGN",
+      "destination": "HAN",
+      "currentDateToDepartDate": "1",
+      "currentDateToReturnDate": "4",
+      "currency": "VND",
+      "isFindLowestPrice": "false",
+      "adultsNum": "2"
     }
   ]
 }

@@ -2,11 +2,11 @@ package vietjet.pages;
 
 import common.Constants;
 import driver.DriverUtilities;
-import element.common.imp.Button;
-import element.common.imp.CheckBox;
-import element.common.imp.Combobox;
-import element.common.imp.TextBox;
-import vietjet.customcontrols.GroupComboBox;
+import element.common.imp.*;
+import org.openqa.selenium.WebElement;
+import vietjet.customcontrols.DatePicker;
+
+import java.util.List;
 
 public class HomePage extends BasePage {
 
@@ -22,14 +22,17 @@ public class HomePage extends BasePage {
         return SingletonHelper.INSTANCE;
     }
 
+    Button btnAdults = new Button("id=ctl00_UcRightV31_CbbAdults_Button");
+    Button btnSearchFlights = new Button("id=ctl00_UcRightV31_BtSearch");
     CheckBox chkReturn = new CheckBox("id=ctl00_UcRightV31_RbRoundTrip");
     CheckBox chkOneWay = new CheckBox("id=ctl00_UcRightV31_RbOneWay");
     CheckBox chkCheckInFare = new CheckBox("id=ctl00_UcRightV31_ChkInfare");
-    Combobox cbxAdults = new Combobox("id=ctl00_UcRightV31_CbbAdults_TextBox");
-    Button btnSearchFlights = new Button("id=ctl00_UcRightV31_BtSearch");
-    GroupComboBox cbxOrigin = new GroupComboBox("id=selectOrigin");
-    GroupComboBox cbxDestination = new GroupComboBox("id=selectDestination");
-    TextBox txtAdults = new TextBox("id=ctl00_UcRightV31_CbbAdults_OptionList");
+    Combobox cbxOrigin = new Combobox("id=selectOrigin");
+    Combobox cbxDestination = new Combobox("id=selectDestination");
+    Combobox cbxMonthPicker = new Combobox("//div[@id='ui-datepicker-div']//select");
+    DatePicker tblDayPicker = new DatePicker("//div[@id='ui-datepicker-div']//tbody");
+    Label lblAdultNumbers = new Label("//ul[@id='ctl00_UcRightV31_CbbAdults_OptionList']/li");
+    TextBox txtAdults = new TextBox("id=ctl00_UcRightV31_CbbAdults_TextBox");
     TextBox txtDepartDate = new TextBox("id=ctl00_UcRightV31_TxtDepartDate");
     TextBox txtReturnDate = new TextBox("id=ctl00_UcRightV31_TxtReturnDate");
     TextBox txtCurrency = new TextBox("id=ctl00_UcRightV31_CbbCurrency_TextBox");
@@ -39,10 +42,10 @@ public class HomePage extends BasePage {
         btnSearchFlights.click();
     }
 
-    public void searchFlights(boolean isReturn, String groupOrigin, String origin, String groupDestination, String destination, String departDate, String returnDate, String currency, boolean isFindLowestPrice, int adultsNum){
+    public void searchFlights(boolean isReturn, String origin, String destination, String departDate, String returnDate, String currency, boolean isFindLowestPrice, int adultsNum){
         selectTicketType(isReturn);
-        selectOriginDestination(groupOrigin, origin, groupDestination, destination);
-        selectDate(departDate, returnDate);
+        selectOriginDestination(origin, destination);
+        selectDepartReturn(departDate, returnDate);
 
         //TODO: enable this code when currency is enabled
         //selectCurrency(currency);
@@ -54,9 +57,18 @@ public class HomePage extends BasePage {
     }
 
     void selectAdultTicketNumber(int adultsNum){
-        if(adultsNum>0&&adultsNum<=9)
-            txtAdults.enter(String.valueOf(adultsNum));
-        else
+        if(adultsNum>0&&adultsNum<=9) {
+            btnAdults.click();
+            List<WebElement> options = lblAdultNumbers.findElements();
+            for (WebElement option : options)
+            {
+                if (option.getText().equals(String.valueOf(adultsNum)))
+                {
+                    option.click(); // click the desired option
+                    break;
+                }
+            }
+        }else
             System.out.println("Number of adults is out of range");
     }
 
@@ -67,11 +79,25 @@ public class HomePage extends BasePage {
         }
     }
 
-    void selectDate(String departDate, String returnDate){
+    void selectDate(String Date) {
+        String[] parts = Date.split("/");
+        String day = parts[0];
+        String month = parts[1];
+        String year = parts[2];
+
+        cbxMonthPicker.selectByText(month);
+        tblDayPicker.waitForClickable(Constants.SHORT_TIMEOUT);
+        tblDayPicker.selectDay(day);
+    }
+
+    void selectDepartReturn(String departDate, String returnDate){
         txtDepartDate.waitForClickable(Constants.SHORT_TIMEOUT);
-        txtDepartDate.enter(departDate);
+        txtDepartDate.click();
+        selectDate(departDate);
+
         txtReturnDate.waitForClickable(Constants.SHORT_TIMEOUT);
-        txtReturnDate.enter(returnDate);
+        txtReturnDate.click();
+        selectDate(returnDate);
     }
 
     void selectFindLowestPrice(boolean isFindLowestPrice){
@@ -84,12 +110,12 @@ public class HomePage extends BasePage {
         }
     }
 
-    void selectOriginDestination(String groupOrigin, String origin, String groupDestination, String destination){
+    void selectOriginDestination(String origin, String destination){
         cbxOrigin.waitForClickable(Constants.SHORT_TIMEOUT);
-        cbxOrigin.select(groupOrigin, origin);
+        cbxOrigin.selectByValue(origin);
 
         cbxDestination.waitForClickable(Constants.SHORT_TIMEOUT);
-        cbxDestination.select(groupDestination, destination);
+        cbxDestination.selectByValue(destination);
     }
 
     void selectTicketType(boolean isReturn){

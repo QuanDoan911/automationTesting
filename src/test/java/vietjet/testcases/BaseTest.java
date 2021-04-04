@@ -21,9 +21,8 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    @Parameters("browser")
-    public void beforeMethod(String browser) throws IllegalAccessException {
-        DriverProperty property = BrowserSettingHelper.getDriverProperty(Constants.BROWSER_CONFIGURATION, browser);
+    public void beforeMethod() throws IllegalAccessException {
+        DriverProperty property = BrowserSettingHelper.getDriverProperty(Constants.BROWSER_CONFIGURATION, Constants.BROWSER+"."+Constants.RUN_ON);
         DriverManagerFactory.createWebDriver(property);
         DriverUtilities.maximizeBrowser();
     }
