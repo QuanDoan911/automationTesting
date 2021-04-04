@@ -15,13 +15,16 @@ public class DateTimeHelper {
         return dateFormatted;
     }
 
-    public static String getDayFarFromCurrent(int numberOfDays, String format) throws ParseException {
-        if(format.isEmpty()||format.equals(null)) format = "d/MMM/yyyy";
+    public static String getDayFarFromCurrent(int numberOfDays, String format){
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return dateFormat.format(calendar.getTime());
+    }
+
+    public static String getDayFarFromCurrent(int numberOfDays){
+        return getDayFarFromCurrent(numberOfDays,"d/MMM/yyyy");
     }
 }

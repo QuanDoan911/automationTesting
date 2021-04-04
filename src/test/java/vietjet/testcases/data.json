@@ -3,7 +3,7 @@
     {
       "no.": "Data1",
       "testDataPurpose": "Search and choose tickets on a specific day successfully",
-      "isReturndata": "true",
+      "isReturn": "true",
       "origin": "SGN",
       "destination": "HAN",
       "currentDateToDepartDate": "1",
