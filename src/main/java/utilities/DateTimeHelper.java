@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class DateTimeHelper {
     public static String getCurrentDay(String format) {
-        if(format.isEmpty()||format.equals(null)) format = "d/MMM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         //get current date time with Date()
         Date date = new Date();
@@ -27,4 +26,12 @@ public class DateTimeHelper {
     public static String getDayFarFromCurrent(int numberOfDays){
         return getDayFarFromCurrent(numberOfDays,"d/MMM/yyyy");
     }
+
+    public static String convertDateFormat(String dateNeedFormat, String oldFormat, String newFormat) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(oldFormat);
+        Date date=dateFormat.parse(dateNeedFormat);
+        SimpleDateFormat newDateFormat=new SimpleDateFormat(newFormat);
+        return newDateFormat.format(date);
+    }
+
 }
