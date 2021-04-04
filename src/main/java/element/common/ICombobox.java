@@ -9,9 +9,11 @@ public interface ICombobox extends IEditable {
 
     String getSelected();
 
-    void select(String text);
+    void selectByText(String text);
 
-    void select(int index);
+    void selectByIndex(int index);
+
+    void selectByValue(String value);
 
     List<String> getOptions();
 }

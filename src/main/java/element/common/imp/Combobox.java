@@ -14,14 +14,19 @@ public class Combobox extends Editable implements ICombobox {
         super(locator);
     }
 
-    public void select(String text) {
+    public void selectByText(String text) {
         Select select = new Select(findElement());
         select.selectByVisibleText(text);
     }
 
-    public void select(int index) {
+    public void selectByIndex(int index) {
         Select select = new Select(findElement());
         select.selectByIndex(index);
+    }
+
+    public void selectByValue(String value) {
+        Select select = new Select(findElement());
+        select.selectByValue(value);
     }
 
     public List<String> getOptions() {
