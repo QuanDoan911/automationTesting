@@ -79,8 +79,8 @@ public class HomePage extends BasePage {
         }
     }
 
-    void selectDate(String Date) {
-        String[] parts = Date.split("/");
+    void selectDate(String date) {
+        String[] parts = date.split("/");
         String day = parts[0];
         String month = parts[1];
         String year = parts[2];

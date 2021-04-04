@@ -5,10 +5,13 @@
       "testDataPurpose": "Search and choose tickets on a specific day successfully",
       "isReturn": "true",
       "origin": "SGN",
+      "originName": "Ho Chi Minh",
       "destination": "HAN",
+      "destinationName": "Ha Noi",
       "currentDateToDepartDate": "1",
       "currentDateToReturnDate": "4",
       "currency": "VND",
+      "currencyName": "Vietnam Dong",
       "isFindLowestPrice": "false",
       "adultsNum": "2"
     }
