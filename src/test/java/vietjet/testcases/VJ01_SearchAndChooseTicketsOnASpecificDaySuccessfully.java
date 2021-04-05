@@ -54,7 +54,6 @@ public class VJ01_SearchAndChooseTicketsOnASpecificDaySuccessfully extends BaseT
             Assert.assertTrue(PassengerInformationPage.getInstance().isReturnFareDisplaysCorrect(returnPrice*adultNumber));
             Assert.assertTrue(PassengerInformationPage.getInstance().isReturnFromDisplaysCorrect(data.get("destinationName")));
             Assert.assertTrue(PassengerInformationPage.getInstance().isReturnToDisplaysCorrect(data.get("originName")));
-
         } catch (Exception e) {
             e.printStackTrace();
         }

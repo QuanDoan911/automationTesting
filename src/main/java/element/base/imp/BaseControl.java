@@ -44,6 +44,14 @@ public class BaseControl {
         return driver().findElement(getLocator());
     }
 
+    public WebElement getChildElement(String xpath) {
+        return findElement().findElement(By.xpath(xpath));
+    }
+
+    public List<WebElement> getChildElements(String xpath) {
+        return findElement().findElements(By.xpath(xpath));
+    }
+
     public List<WebElement> findElements() {
         return driver().findElements(getLocator());
     }

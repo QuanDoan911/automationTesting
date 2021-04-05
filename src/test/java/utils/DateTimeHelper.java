@@ -1,9 +1,15 @@
-package utilities;
+package utils;
 
-import java.text.ParseException;
+import common.Constants;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class DateTimeHelper {
     public static String getCurrentDay(String format) {
@@ -15,23 +21,19 @@ public class DateTimeHelper {
     }
 
     public static String getDayFarFromCurrent(int numberOfDays, String format) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
-        return dateFormat.format(calendar.getTime());
+        return convertDateFormat(calendar.getTime(),format);
     }
-
 
     public static String getDayFarFromCurrent(int numberOfDays) {
-        return getDayFarFromCurrent(numberOfDays, "d/MMM/yyyy");
+        return getDayFarFromCurrent(numberOfDays, Constants.DEFAULT_FORMAT);
     }
 
-    public static String convertDateFormat(String dateNeedFormat, String oldFormat, String newFormat) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(oldFormat);
-        Date date = dateFormat.parse(dateNeedFormat);
-        SimpleDateFormat newDateFormat = new SimpleDateFormat(newFormat);
-        return newDateFormat.format(date);
+    public static String convertDateFormat(Date date, String format) {
+        DateFormat df = new SimpleDateFormat(format);
+        return df.format(date);
     }
 }

@@ -27,5 +27,9 @@ public class Constants {
     public static final String RUN_ON = PropertiesHelper.getStringValue("RunOn").toLowerCase();
 
     //
-    public static final String URL = PropertiesHelper.getStringValue("profile.vietjet.url");
+    public static final String VIETJET_US_URL = PropertiesHelper.getStringValue("profile.vietjet.url");
+    public static final String VIETJET_VI_URL = PropertiesHelper.getStringValue("profile.vietjet.url");
+
+    //
+    public static final String DEFAULT_FORMAT = "d/MMM/yyyy";
 }
