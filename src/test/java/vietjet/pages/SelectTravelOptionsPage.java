@@ -1,6 +1,5 @@
 package vietjet.pages;
 
-import common.Constants;
 import driver.DriverUtilities;
 import element.common.imp.Button;
 import element.common.imp.CheckBox;
@@ -11,12 +10,14 @@ import utilities.StringHelper;
 
 import java.util.List;
 
+import static common.Constants.MEDIUM_TIMEOUT;
+import static common.Constants.SHORT_TIMEOUT;
 import static driver.DriverUtilities.driver;
 
 public class SelectTravelOptionsPage extends BasePage {
 
     public SelectTravelOptionsPage() {
-        DriverUtilities.waitForJQuery(Constants.MEDIUM_TIMEOUT);
+        DriverUtilities.waitForJQuery(MEDIUM_TIMEOUT);
     }
 
     public Button btnContinue = new Button("//a[text()='Continue']");
@@ -57,7 +58,7 @@ public class SelectTravelOptionsPage extends BasePage {
     }
 
     public void clickContinue() {
-        btnContinue.waitForClickable(Constants.SHORT_TIMEOUT);
+        btnContinue.waitForClickable(SHORT_TIMEOUT);
         btnContinue.click();
     }
 

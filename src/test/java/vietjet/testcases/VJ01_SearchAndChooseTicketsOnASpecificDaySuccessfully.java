@@ -1,6 +1,5 @@
 package vietjet.testcases;
 
-import common.Constants;
 import driver.DriverUtilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,19 +11,21 @@ import vietjet.pages.SelectTravelOptionsPage;
 
 import java.util.Hashtable;
 
+import static common.Constants.*;
+
 public class VJ01_SearchAndChooseTicketsOnASpecificDaySuccessfully extends BaseTest {
     @Test(dataProvider = "getDataForTest", priority = 1, description = "Search and choose tickets on a specific day successfully")
     public void TC01(Hashtable<String, String> data) {
         int daysPlusToDepart = Integer.parseInt(data.get("plusToDepartDate"));
         int daysPlusToReturn = Integer.parseInt(data.get("plusToReturnDate"));
         int adultNumber = Integer.parseInt(data.get("adultsNum"));
-        String departDateNum = DateTimeHelper.plusDaysFromCurrent(daysPlusToDepart, Constants.DATE_FORMAT_NUMBER);
-        String returnDateNum = DateTimeHelper.plusDaysFromCurrent(daysPlusToReturn, Constants.DATE_FORMAT_NUMBER);
-        String departDateWithMonthChar = DateTimeHelper.plusDaysFromCurrent(daysPlusToDepart, Constants.DATE_FORMAT_CONTAINS_CHARACTERS);
-        String returnDateWithMonthChar = DateTimeHelper.plusDaysFromCurrent(daysPlusToReturn, Constants.DATE_FORMAT_CONTAINS_CHARACTERS);
+        String departDateNum = DateTimeHelper.plusDaysFromCurrent(daysPlusToDepart, DATE_FORMAT_NUMBER);
+        String returnDateNum = DateTimeHelper.plusDaysFromCurrent(daysPlusToReturn, DATE_FORMAT_NUMBER);
+        String departDateWithMonthChar = DateTimeHelper.plusDaysFromCurrent(daysPlusToDepart, DATE_FORMAT_CONTAINS_CHARACTERS);
+        String returnDateWithMonthChar = DateTimeHelper.plusDaysFromCurrent(daysPlusToReturn, DATE_FORMAT_CONTAINS_CHARACTERS);
 
         System.out.println("Navigate to test site");
-        DriverUtilities.navigateToTestSite(Constants.VIETJET_URL);
+        DriverUtilities.navigateToTestSite(VIETJET_URL);
 
         System.out.println("Search flight");
         HomePage homePage = new HomePage();

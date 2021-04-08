@@ -1,6 +1,5 @@
 package vietjet.pages;
 
-import common.Constants;
 import driver.DriverUtilities;
 import element.common.imp.*;
 import org.openqa.selenium.WebElement;
@@ -8,10 +7,13 @@ import vietjet.customcontrols.DatePicker;
 
 import java.util.List;
 
+import static common.Constants.MEDIUM_TIMEOUT;
+import static common.Constants.SHORT_TIMEOUT;
+
 public class HomePage extends BasePage {
 
     public HomePage() {
-        DriverUtilities.waitForJQuery(Constants.MEDIUM_TIMEOUT);
+        DriverUtilities.waitForJQuery(MEDIUM_TIMEOUT);
     }
 
     Button btnAdults = new Button("id=ctl00_UcRightV31_CbbAdults_Button");
@@ -30,7 +32,7 @@ public class HomePage extends BasePage {
     TextBox txtCurrency = new TextBox("id=ctl00_UcRightV31_CbbCurrency_TextBox");
 
     void clickSearchButton() {
-        btnSearchFlights.waitForClickable(Constants.SHORT_TIMEOUT);
+        btnSearchFlights.waitForClickable(SHORT_TIMEOUT);
         btnSearchFlights.click();
     }
 
@@ -64,7 +66,7 @@ public class HomePage extends BasePage {
 
     void selectCurrency(String currency) {
         if (!currency.isEmpty() && !currency.equals(null)) {
-            txtCurrency.waitForClickable(Constants.SHORT_TIMEOUT);
+            txtCurrency.waitForClickable(SHORT_TIMEOUT);
             txtCurrency.enter(currency);
         }
     }
@@ -76,44 +78,44 @@ public class HomePage extends BasePage {
         String year = parts[2];
 
         cbxMonthPicker.selectByText(month);
-        tblDayPicker.waitForClickable(Constants.SHORT_TIMEOUT);
+        tblDayPicker.waitForClickable(SHORT_TIMEOUT);
         tblDayPicker.selectDay(day);
     }
 
     void selectDepartReturn(String departDate, String returnDate) {
-        txtDepartDate.waitForClickable(Constants.SHORT_TIMEOUT);
+        txtDepartDate.waitForClickable(SHORT_TIMEOUT);
         txtDepartDate.click();
         selectDate(departDate);
 
-        txtReturnDate.waitForClickable(Constants.SHORT_TIMEOUT);
+        txtReturnDate.waitForClickable(SHORT_TIMEOUT);
         txtReturnDate.click();
         selectDate(returnDate);
     }
 
     void selectFindLowestPrice(boolean isFindLowestPrice) {
         if (isFindLowestPrice) {
-            chkCheckInFare.waitForClickable(Constants.SHORT_TIMEOUT);
+            chkCheckInFare.waitForClickable(SHORT_TIMEOUT);
             chkCheckInFare.check();
         } else {
-            chkCheckInFare.waitForClickable(Constants.SHORT_TIMEOUT);
+            chkCheckInFare.waitForClickable(SHORT_TIMEOUT);
             chkCheckInFare.uncheck();
         }
     }
 
     void selectOriginDestination(String origin, String destination) {
-        cbxOrigin.waitForClickable(Constants.SHORT_TIMEOUT);
+        cbxOrigin.waitForClickable(SHORT_TIMEOUT);
         cbxOrigin.selectByValue(origin);
 
-        cbxDestination.waitForClickable(Constants.SHORT_TIMEOUT);
+        cbxDestination.waitForClickable(SHORT_TIMEOUT);
         cbxDestination.selectByValue(destination);
     }
 
     void selectTicketType(boolean isReturn) {
         if (isReturn) {
-            chkReturn.waitForClickable(Constants.SHORT_TIMEOUT);
+            chkReturn.waitForClickable(SHORT_TIMEOUT);
             chkReturn.check();
         } else {
-            chkOneWay.waitForClickable(Constants.SHORT_TIMEOUT);
+            chkOneWay.waitForClickable(SHORT_TIMEOUT);
             chkOneWay.check();
         }
     }

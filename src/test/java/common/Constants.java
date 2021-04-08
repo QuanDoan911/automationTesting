@@ -28,6 +28,11 @@ public class Constants {
 
     //URL
     public static final String VIETJET_URL = PropertiesHelper.getStringValue("profile.vietjet.url");
+    public static final String LGMAIL_URL = PropertiesHelper.getStringValue("profile.lgmail.url");
+
+    //LG account
+    public static final String LG_USERNAME = System.getenv("LG_USERNAME");
+    public static final String LG_PASSWORD = System.getenv("LG_PASSWORD");
 
     //Date time format
     public static final String DATE_FORMAT_NUMBER = PropertiesHelper.getStringValue("profile.vietjet.dateformatnum");
