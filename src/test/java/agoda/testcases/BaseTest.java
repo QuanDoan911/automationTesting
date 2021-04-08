@@ -1,14 +1,16 @@
 package agoda.testcases;
 
-import driver.manage.DriverManagerFactory;
 import driver.DriverProperty;
 import driver.DriverUtilities;
-import org.testng.annotations.*;
+import driver.manage.DriverManagerFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import utilities.BrowserSettingHelper;
-import common.Constants;
 import utilities.JsonHelper;
-import utilities.PropertiesHelper;
 
+import java.io.File;
 import java.io.IOException;
 
 import static common.Constants.*;
@@ -17,25 +19,26 @@ public class BaseTest {
 
     public String testCaseName;
 
-    //Initiate variable for log4j
-    public static PropertiesHelper propertiesHelper = null;
-
-    @BeforeSuite()
-    public void beforeSuite() {
-        //TODO
+    @BeforeClass
+    public void beforeClass() {
+        testCaseName = this.getClass().getSimpleName();
     }
 
-    @BeforeMethod(alwaysRun = true)
-    @Parameters("browser")
-    public void beforeMethod(@Optional String browser) throws IllegalAccessException {
-        DriverProperty property = BrowserSettingHelper.getDriverProperty(Constants.BROWSER_CONFIGURATION, browser);
+    @BeforeMethod
+    public void beforeMethod() throws IllegalAccessException {
+        DriverProperty property = BrowserSettingHelper.getDriverProperty(BROWSER_CONFIGURATION, BROWSER + "." + RUN_ON);
         DriverManagerFactory.createWebDriver(property);
         DriverUtilities.maximizeBrowser();
     }
 
+    @AfterMethod
+    public void afterMethod() {
+        DriverUtilities.closeBrowser();
+    }
+
     @DataProvider
     public Object[][] getDataForTest() throws IOException {
-        String DataFilePath = TEST_DATA_JSON + "/" + this.getClass().getPackage().getName().replace(".", "/") + "/data.json";
+        String DataFilePath = TEST_DATA_JSON + File.separator + this.getClass().getPackage().getName().replace(".", File.separator) + File.separator + "data.json";
         Object[][] data = JsonHelper.getData(testCaseName, DataFilePath);
         return data;
     }

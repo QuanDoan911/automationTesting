@@ -1,13 +1,14 @@
 package vietjet.pages;
 
-import common.Constants;
 import driver.DriverUtilities;
 import element.common.imp.Label;
+
+import static common.Constants.MEDIUM_TIMEOUT;
 
 public class PassengerInformationPage extends BasePage {
 
     public PassengerInformationPage() {
-        DriverUtilities.waitForJQuery(Constants.MEDIUM_TIMEOUT);
+        DriverUtilities.waitForJQuery(MEDIUM_TIMEOUT);
     }
 
     public Label lblPageName = new Label("//h1[text()='Passenger Information']");

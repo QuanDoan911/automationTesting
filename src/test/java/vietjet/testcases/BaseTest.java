@@ -1,6 +1,5 @@
 package vietjet.testcases;
 
-import common.Constants;
 import driver.DriverProperty;
 import driver.DriverUtilities;
 import driver.manage.DriverManagerFactory;
@@ -14,6 +13,8 @@ import utilities.JsonHelper;
 import java.io.File;
 import java.io.IOException;
 
+import static common.Constants.*;
+
 public class BaseTest {
 
     public String testCaseName;
@@ -25,7 +26,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() throws IllegalAccessException {
-        DriverProperty property = BrowserSettingHelper.getDriverProperty(Constants.BROWSER_CONFIGURATION, Constants.BROWSER + "." + Constants.RUN_ON);
+        DriverProperty property = BrowserSettingHelper.getDriverProperty(BROWSER_CONFIGURATION, BROWSER + "." + RUN_ON);
         DriverManagerFactory.createWebDriver(property);
         DriverUtilities.maximizeBrowser();
     }
@@ -37,7 +38,7 @@ public class BaseTest {
 
     @DataProvider
     public Object[][] getDataForTest() throws IOException {
-        String DataFilePath = Constants.TEST_DATA_JSON + File.separator + this.getClass().getPackage().getName().replace(".", File.separator) + File.separator + "data.json";
+        String DataFilePath = TEST_DATA_JSON + File.separator + this.getClass().getPackage().getName().replace(".", File.separator) + File.separator + "data.json";
         Object[][] data = JsonHelper.getData(testCaseName, DataFilePath);
         return data;
     }
