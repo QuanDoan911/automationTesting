@@ -6,10 +6,12 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.PropertiesHelper;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class DriverUtilities {
 
@@ -50,6 +52,22 @@ public class DriverUtilities {
         } catch (Exception e) {
             logger.error("waitForAjax: An error occurred when waitForAjax: " + e.getMessage());
         }
+    }
+
+    public static void waitForJQuery(int timeout) {
+        Wait<WebDriver> wait = new WebDriverWait(driver(), timeout);
+        wait.until(new Function<WebDriver, Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                boolean readyState = ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+                boolean activeJQuery = ((JavascriptExecutor) driver).executeScript("if (typeof jQuery != 'undefined') { return jQuery.active == 0; } else {  return true; }").equals(true);
+                return readyState && activeJQuery;
+            }
+        });
     }
 
     public static void waitForAlert(int timeout) {
