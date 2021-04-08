@@ -10,16 +10,8 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
-    private HomePage(){
-        DriverUtilities.waitForAjax(Constants.LONG_TIMEOUT);
-    }
-
-    private static class SingletonHelper{
-        private static final HomePage INSTANCE = new HomePage();
-    }
-
-    public static HomePage getInstance(){
-        return SingletonHelper.INSTANCE;
+    public HomePage() {
+        DriverUtilities.waitForJQuery(Constants.MEDIUM_TIMEOUT);
     }
 
     Button btnAdults = new Button("id=ctl00_UcRightV31_CbbAdults_Button");
@@ -37,12 +29,12 @@ public class HomePage extends BasePage {
     TextBox txtReturnDate = new TextBox("id=ctl00_UcRightV31_TxtReturnDate");
     TextBox txtCurrency = new TextBox("id=ctl00_UcRightV31_CbbCurrency_TextBox");
 
-    void clickSearch(){
+    void clickSearchButton() {
         btnSearchFlights.waitForClickable(Constants.SHORT_TIMEOUT);
         btnSearchFlights.click();
     }
 
-    public void searchFlights(boolean isReturn, String origin, String destination, String departDate, String returnDate, String currency, boolean isFindLowestPrice, int adultsNum){
+    public void searchFlights(boolean isReturn, String origin, String destination, String departDate, String returnDate, String currency, boolean isFindLowestPrice, int adultsNum) {
         selectTicketType(isReturn);
         selectOriginDestination(origin, destination);
         selectDepartReturn(departDate, returnDate);
@@ -53,27 +45,25 @@ public class HomePage extends BasePage {
         selectFindLowestPrice(isFindLowestPrice);
         selectAdultTicketNumber(adultsNum);
 
-        clickSearch();
+        clickSearchButton();
     }
 
-    void selectAdultTicketNumber(int adultsNum){
-        if(adultsNum>0&&adultsNum<=9) {
+    void selectAdultTicketNumber(int adultsNum) {
+        if (adultsNum > 0 && adultsNum <= 9) {
             btnAdults.click();
             List<WebElement> options = lblAdultNumbers.findElements();
-            for (WebElement option : options)
-            {
-                if (option.getText().equals(String.valueOf(adultsNum)))
-                {
+            for (WebElement option : options) {
+                if (option.getText().equals(String.valueOf(adultsNum))) {
                     option.click(); // click the desired option
                     break;
                 }
             }
-        }else
+        } else
             System.out.println("Number of adults is out of range");
     }
 
-    void selectCurrency(String currency){
-        if(!currency.isEmpty()&&!currency.equals(null)) {
+    void selectCurrency(String currency) {
+        if (!currency.isEmpty() && !currency.equals(null)) {
             txtCurrency.waitForClickable(Constants.SHORT_TIMEOUT);
             txtCurrency.enter(currency);
         }
@@ -90,7 +80,7 @@ public class HomePage extends BasePage {
         tblDayPicker.selectDay(day);
     }
 
-    void selectDepartReturn(String departDate, String returnDate){
+    void selectDepartReturn(String departDate, String returnDate) {
         txtDepartDate.waitForClickable(Constants.SHORT_TIMEOUT);
         txtDepartDate.click();
         selectDate(departDate);
@@ -100,17 +90,17 @@ public class HomePage extends BasePage {
         selectDate(returnDate);
     }
 
-    void selectFindLowestPrice(boolean isFindLowestPrice){
-        if(isFindLowestPrice) {
+    void selectFindLowestPrice(boolean isFindLowestPrice) {
+        if (isFindLowestPrice) {
             chkCheckInFare.waitForClickable(Constants.SHORT_TIMEOUT);
             chkCheckInFare.check();
-        }else {
+        } else {
             chkCheckInFare.waitForClickable(Constants.SHORT_TIMEOUT);
             chkCheckInFare.uncheck();
         }
     }
 
-    void selectOriginDestination(String origin, String destination){
+    void selectOriginDestination(String origin, String destination) {
         cbxOrigin.waitForClickable(Constants.SHORT_TIMEOUT);
         cbxOrigin.selectByValue(origin);
 
@@ -118,11 +108,11 @@ public class HomePage extends BasePage {
         cbxDestination.selectByValue(destination);
     }
 
-    void selectTicketType(boolean isReturn){
-        if(isReturn) {
+    void selectTicketType(boolean isReturn) {
+        if (isReturn) {
             chkReturn.waitForClickable(Constants.SHORT_TIMEOUT);
             chkReturn.check();
-        }else {
+        } else {
             chkOneWay.waitForClickable(Constants.SHORT_TIMEOUT);
             chkOneWay.check();
         }

@@ -10,11 +10,11 @@ public class DateTimeHelper {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         //get current date time with Date()
         Date date = new Date();
-        String dateFormatted= dateFormat.format(date);
+        String dateFormatted = dateFormat.format(date);
         return dateFormatted;
     }
 
-    public static String getDayFarFromCurrent(int numberOfDays, String format){
+    public static String plusDaysFromCurrent(int numberOfDays, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -23,14 +23,15 @@ public class DateTimeHelper {
         return dateFormat.format(calendar.getTime());
     }
 
-    public static String getDayFarFromCurrent(int numberOfDays){
-        return getDayFarFromCurrent(numberOfDays,"d/MMM/yyyy");
-    }
-
-    public static String convertDateFormat(String dateNeedFormat, String oldFormat, String newFormat) throws ParseException {
+    public static String convertDateFormat(String dateNeedFormat, String oldFormat, String newFormat) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(oldFormat);
-        Date date=dateFormat.parse(dateNeedFormat);
-        SimpleDateFormat newDateFormat=new SimpleDateFormat(newFormat);
+        Date date = null;
+        try {
+            date = dateFormat.parse(dateNeedFormat);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat newDateFormat = new SimpleDateFormat(newFormat);
         return newDateFormat.format(date);
     }
 

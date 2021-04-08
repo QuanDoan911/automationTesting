@@ -26,6 +26,10 @@ public class Constants {
     public static final String BROWSER = PropertiesHelper.getStringValue("BrowserName").toLowerCase();
     public static final String RUN_ON = PropertiesHelper.getStringValue("RunOn").toLowerCase();
 
-    //
-    public static final String URL = PropertiesHelper.getStringValue("profile.vietjet.url");
+    //URL
+    public static final String VIETJET_URL = PropertiesHelper.getStringValue("profile.vietjet.url");
+
+    //Date time format
+    public static final String DATE_FORMAT_NUMBER = PropertiesHelper.getStringValue("profile.vietjet.dateformatnum");
+    public static final String DATE_FORMAT_CONTAINS_CHARACTERS = PropertiesHelper.getStringValue("profile.vietjet.dateformatcharacters");
 }
